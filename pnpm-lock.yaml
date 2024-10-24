@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@capacitor/android':
+        specifier: ^6.1.2
+        version: 6.1.2(@capacitor/core@6.1.2)
       '@capacitor/app':
         specifier: 6.0.1
         version: 6.0.1(@capacitor/core@6.1.2)
@@ -17,6 +20,9 @@ importers:
       '@capacitor/haptics':
         specifier: 6.0.1
         version: 6.0.1(@capacitor/core@6.1.2)
+      '@capacitor/ios':
+        specifier: ^6.1.2
+        version: 6.1.2(@capacitor/core@6.1.2)
       '@capacitor/keyboard':
         specifier: 6.0.2
         version: 6.0.2(@capacitor/core@6.1.2)
@@ -650,6 +656,11 @@ packages:
     resolution: {integrity: sha512-OwS2CM5KocvQ/k7dFJa8i5bNGJP0hXWfVCfDkqRFP1IreH1JDC7wG6eCYCi0+McbfT8OR/kNqsI0UU0xP9H6PQ==}
     engines: {node: '>=6.9.0'}
 
+  '@capacitor/android@6.1.2':
+    resolution: {integrity: sha512-Yh0gQDY1bgRrL25J6ecIlvvs2kF8iNSwIPXjyw6Yz9mnwYxBazF5KZbjpKtGPnJgicJhFkYGsqOkEtxrve0EoQ==}
+    peerDependencies:
+      '@capacitor/core': ^6.1.0
+
   '@capacitor/app@6.0.1':
     resolution: {integrity: sha512-0kXbOl7LPPMFVcAii3u/7Ps0DvXlr7dtHT97r9J1faDlgdQLQUvtGp48tjvFm48gqHI0aOPRJnTBr5JXW4ETYg==}
     peerDependencies:
@@ -667,6 +678,11 @@ packages:
     resolution: {integrity: sha512-Q8hedLwfwTSWEYc3eoATzkdKHBaIceYe5bd7FjxQCENNH0is5Ft0EjSRPz/xpTn39ebK0ooZBDBCwsyl6tjiTA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
+
+  '@capacitor/ios@6.1.2':
+    resolution: {integrity: sha512-HaeW68KisBd/7TmavzPDlL2bpoDK5AjR2ZYrqU4TlGwM88GtQfvduBCAlSCj20X0w/4+rWMkseD9dAAkacjiyQ==}
+    peerDependencies:
+      '@capacitor/core': ^6.1.0
 
   '@capacitor/keyboard@6.0.2':
     resolution: {integrity: sha512-fOfO3rQ0ZXuTHpK03INVTwmBnpqMiH8EHPpNaHjwjKwdrVRWBvtgIFhuyHNXh53rdcXw+uHB+1RIiNabnCrITw==}
@@ -5611,6 +5627,10 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@capacitor/android@6.1.2(@capacitor/core@6.1.2)':
+    dependencies:
+      '@capacitor/core': 6.1.2
+
   '@capacitor/app@6.0.1(@capacitor/core@6.1.2)':
     dependencies:
       '@capacitor/core': 6.1.2
@@ -5643,6 +5663,10 @@ snapshots:
       tslib: 2.8.0
 
   '@capacitor/haptics@6.0.1(@capacitor/core@6.1.2)':
+    dependencies:
+      '@capacitor/core': 6.1.2
+
+  '@capacitor/ios@6.1.2(@capacitor/core@6.1.2)':
     dependencies:
       '@capacitor/core': 6.1.2
 
