@@ -25,7 +25,7 @@
 
     <ion-content class="ion-padding">
       <div class="support-logo">
-        <img src="../../public/assets/img/appicon.svg" alt="Ionic Logo" />
+        <img src="/assets/img/appicon.svg" alt="Ionic Logo" />
       </div>
       <form novalidate @submit="submitForm">
         <ion-textarea
