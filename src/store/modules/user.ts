@@ -1,62 +1,62 @@
-import { Module } from 'vuex';
+import type { Module } from 'vuex'
 
 export interface User {
-  pictureLocation: string | null;
-  userName: string | null;
-  isAuthenticated: boolean;
-  hasSeenTutorial: boolean;
+  pictureLocation: string | null
+  userName: string | null
+  isAuthenticated: boolean
+  hasSeenTutorial: boolean
 }
 
 const defaultState: User = {
   pictureLocation: null,
   userName: null,
   isAuthenticated: false,
-  hasSeenTutorial: false
-};
+  hasSeenTutorial: false,
+}
 
 const userStore: Module<User, {}> = {
   state: defaultState,
   mutations: {
     sawTutorial(state) {
-      state.hasSeenTutorial = true;
+      state.hasSeenTutorial = true
     },
     logIn(state, userName: string) {
-      state.userName = userName;
-      state.isAuthenticated = true;
+      state.userName = userName
+      state.isAuthenticated = true
     },
     logOut(state) {
-      Object.assign(state, defaultState);
+      Object.assign(state, defaultState)
     },
     updateUserPicture(state, pictureLocation: string) {
-      state.pictureLocation = pictureLocation;
+      state.pictureLocation = pictureLocation
     },
     setHasSeenTutorial(state, value: boolean) {
-      state.hasSeenTutorial = value;
+      state.hasSeenTutorial = value
     },
   },
   actions: {
     sawTutorial({ commit }) {
-      commit('sawTutorial');
+      commit('sawTutorial')
     },
     logIn({ commit }, userName: string) {
       setTimeout(() => {
-        commit('logIn', userName);
-      }, 50);
+        commit('logIn', userName)
+      }, 50)
     },
     logOut({ commit }) {
       setTimeout(() => {
-        commit('logOut');
-      }, 50);
+        commit('logOut')
+      }, 50)
     },
     updateUserPicture({ commit }, pictureLocation: string) {
       setTimeout(() => {
-        commit('updateUserPicture', pictureLocation);
-      }, 50);
+        commit('updateUserPicture', pictureLocation)
+      }, 50)
     },
     setHasSeenTutorial({ commit }, value: boolean) {
-      commit('setHasSeenTutorial', value);
+      commit('setHasSeenTutorial', value)
     },
-  }
-};
+  },
+}
 
-export default userStore;
+export default userStore

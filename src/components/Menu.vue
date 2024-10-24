@@ -1,107 +1,10 @@
-<template>
-  <ion-menu content-id="main-content">
-    <ion-content class="ion-padding">
-      <ion-list lines="none">
-        <ion-list-header>
-          Navigate
-        </ion-list-header>
-        <ion-menu-toggle :auto-hide="false" v-for="p in appPages" :key="p.title">
-          <ion-item button @click="navigate(p.url)">
-            <ion-icon slot="start" :icon="p.icon"></ion-icon>
-            <ion-label>
-              {{p.title}}
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-      <ion-list v-if="loggedIn" lines="none">
-        <ion-list-header>
-          Account
-        </ion-list-header>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="navigate('/account')">
-            <ion-icon slot="start" :icon="ionIcons.person"></ion-icon>
-            <ion-label>
-              Account
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="navigate('/support')">
-            <ion-icon slot="start" :icon="ionIcons.help"></ion-icon>
-            <ion-label>
-              Support
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="logout()">
-            <ion-icon slot="start" :icon="ionIcons.logOut"></ion-icon>
-            <ion-label>
-              Logout
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-      <ion-list v-if="!loggedIn" lines="none">
-        <ion-list-header>
-          Account
-        </ion-list-header>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="navigate('/login')">
-            <ion-icon slot="start" :icon="ionIcons.logIn"></ion-icon>
-            <ion-label>
-              Login
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="navigate('/support')">
-            <ion-icon slot="start" :icon="ionIcons.help"></ion-icon>
-            <ion-label>
-              Support
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="navigate('/signup')">
-            <ion-icon slot="start" :icon="ionIcons.personAdd"></ion-icon>
-            <ion-label>
-              Signup
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-item>
-          <ion-icon slot="start" :icon="ionIcons.moonOutline"></ion-icon>
-            <ion-toggle v-model="localDark" label-placement="start">
-              Dark Mode
-            </ion-toggle>
-          </ion-item>
-      </ion-list>
-      <ion-list lines="none">
-        <ion-list-header>
-          Tutorial
-        </ion-list-header>
-        <ion-menu-toggle :auto-hide="false">
-          <ion-item button @click="openTutorial()">
-            <ion-icon slot="start" :icon="ionIcons.hammer"></ion-icon>
-            <ion-label>Show Tutorial</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-</template>
-
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue';
-import { useStore } from '@/store';
+import router from '@/router'
+import { useStore } from '@/store'
 
+import { Storage } from '@ionic/storage'
 import {
   IonContent,
-  IonMenuButton,
-  IonButtons,
-  IonHeader,
   IonIcon,
   IonItem,
   IonLabel,
@@ -109,26 +12,21 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonTitle,
-  IonToolbar,
   IonToggle,
-} from '@ionic/vue';
-import * as ionIcons from "ionicons/icons";
+} from '@ionic/vue'
+import * as ionIcons from 'ionicons/icons'
 import {
   calendar,
-  people,
+  informationCircle,
   map,
-  informationCircle
-} from "ionicons/icons";
-import router from '@/router';
-import { Storage } from '@ionic/storage';
+  people,
+} from 'ionicons/icons'
+import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } from 'vue'
+
 export default defineComponent({
-  name: 'Menu',
+  name: 'SysMenu',
   components: {
-    IonHeader,
     IonContent,
-    IonMenuButton,
-    IonButtons,
     IonIcon,
     IonItem,
     IonLabel,
@@ -136,63 +34,58 @@ export default defineComponent({
     IonListHeader,
     IonMenu,
     IonMenuToggle,
-    IonTitle,
-    IonToolbar,
     IonToggle,
   },
   props: {
     darkMode: Boolean,
   },
   emits: ['dark-mode-changed'],
-  setup(props) {
-    const instance = getCurrentInstance();
-    const store = useStore();
-    const localDark = ref(false);
-    const loggedIn = ref(false);
-    const storage = new Storage();
-
-    watch(localDark, (newVal) => {
-      updateDarkMode(newVal);
-    });
-
+  setup() {
+    const instance = getCurrentInstance()
+    const store = useStore()
+    const localDark = ref(false)
+    const loggedIn = ref(false)
+    const storage = new Storage()
     const updateDarkMode = (newDarkValue: boolean) => {
-      instance?.emit('dark-mode-changed', newDarkValue);
+      instance?.emit('dark-mode-changed', newDarkValue)
     }
+    watch(localDark, (newVal) => {
+      updateDarkMode(newVal)
+    })
 
-    const isDarkMode = computed(() => store.getters.isDarkMode);
+    const isDarkMode = computed(() => store.getters.isDarkMode)
 
     const setLocalDarkMode = (newDarkValue: boolean) => {
-      localDark.value = newDarkValue;
-      updateDarkMode(newDarkValue);
+      localDark.value = newDarkValue
+      updateDarkMode(newDarkValue)
     }
 
     const openTutorial = async () => {
-      await storage.set('ion_did_tutorial', false);
-      await router.push({ name: 'tutorial' });
+      await storage.set('ion_did_tutorial', false)
+      await router.push({ name: 'tutorial' })
     }
 
     const navigate = (url: string) => {
-      router.push(url);
+      router.push(url)
     }
 
     const logout = () => {
     }
 
     onMounted(async () => {
-      await storage.create();
-    });
+      await storage.create()
+    })
 
     return {
-    localDark,
-    isDarkMode,
-    setLocalDarkMode,
-    openTutorial,
-    navigate,
-    logout,
-    loggedIn,
-    updateDarkMode
-  };
-
+      localDark,
+      isDarkMode,
+      setLocalDarkMode,
+      openTutorial,
+      navigate,
+      logout,
+      loggedIn,
+      updateDarkMode,
+    }
   },
   data() {
     return {
@@ -206,25 +99,138 @@ export default defineComponent({
           title: 'Schedule',
           url: '/tabs/schedule',
           name: 'tabs.schedule',
-          icon: calendar
+          icon: calendar,
         },
         {
           title: 'Speakers',
           url: '/tabs/speakers',
-          icon: people
+          icon: people,
         },
         {
           title: 'Map',
           url: '/tabs/map',
-          icon: map
+          icon: map,
         },
         {
           title: 'About',
           url: '/tabs/about',
-          icon: informationCircle
-        }
-      ]
-    };
-  }
-});
+          icon: informationCircle,
+        },
+      ],
+    }
+  },
+})
 </script>
+
+<template>
+  <IonMenu content-id="main-content">
+    <IonContent class="ion-padding">
+      <IonList lines="none">
+        <IonListHeader>
+          Navigate
+        </IonListHeader>
+        <IonMenuToggle v-for="p in appPages" :key="p.title" :auto-hide="false">
+          <IonItem button @click="navigate(p.url)">
+            <template #start>
+              <IonIcon :icon="p.icon" />
+            </template>
+            <IonLabel>
+              {{ p.title }}
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+      </IonList>
+      <IonList v-if="loggedIn" lines="none">
+        <IonListHeader>
+          Account
+        </IonListHeader>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="navigate('/account')">
+            <template #start>
+              <IonIcon :icon="ionIcons.person" />
+            </template>
+            <IonLabel>
+              Account
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="navigate('/support')">
+            <template #start>
+              <IonIcon :icon="ionIcons.help" />
+            </template>
+            <IonLabel>
+              Support
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="logout()">
+            <template #start>
+              <IonIcon :icon="ionIcons.logOut" />
+            </template>
+            <IonLabel>
+              Logout
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+      </IonList>
+      <IonList v-if="!loggedIn" lines="none">
+        <IonListHeader>
+          Account
+        </IonListHeader>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="navigate('/login')">
+            <template #start>
+              <IonIcon :icon="ionIcons.logIn" />
+            </template>
+            <IonLabel>
+              Login
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="navigate('/support')">
+            <template #start>
+              <IonIcon :icon="ionIcons.help" />
+            </template>
+            <IonLabel>
+              Support
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="navigate('/signup')">
+            <template #start>
+              <IonIcon :icon="ionIcons.personAdd" />
+            </template>
+            <IonLabel>
+              Signup
+            </IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+        <IonItem>
+          <template #start>
+            <IonIcon :icon="ionIcons.moonOutline" />
+          </template>
+          <IonToggle v-model="localDark" label-placement="start">
+            Dark Mode
+          </IonToggle>
+        </IonItem>
+      </IonList>
+      <IonList lines="none">
+        <IonListHeader>
+          Tutorial
+        </IonListHeader>
+        <IonMenuToggle :auto-hide="false">
+          <IonItem button @click="openTutorial()">
+            <template #start>
+              <IonIcon :icon="ionIcons.hammer" />
+            </template>
+            <IonLabel>Show Tutorial</IonLabel>
+          </IonItem>
+        </IonMenuToggle>
+      </IonList>
+    </IonContent>
+  </IonMenu>
+</template>

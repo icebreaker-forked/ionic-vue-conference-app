@@ -1,32 +1,70 @@
-<template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button text="Speakers"></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{ speaker ? speaker.name : '' }}</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<script lang="ts" setup>
+import type { Speaker } from '@/store/modules/speakers'
+import { useStore } from '@/store'
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/vue'
+import {
+  logoGithub,
+  logoInstagram,
+  logoTwitter,
+} from 'ionicons/icons'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
-    <ion-content padding class="speaker-detail">
-      <div text-center v-if="speaker">
+const speaker = computed(() => {
+  return store.state.speakers.speakers.find((s: Speaker) => s.id === Number.parseInt(route.params.speakerId.toString()))
+})
+
+const store = useStore()
+const route = useRoute()
+</script>
+
+<template>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <template #start>
+          <IonButtons>
+            <IonBackButton text="Speakers" />
+          </IonButtons>
+        </template>
+        <IonTitle>{{ speaker ? speaker.name : '' }}</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent padding class="speaker-detail">
+      <div v-if="speaker" text-center>
         <img :src="speaker.profilePic" :alt="speaker.name">
         <br>
-        <ion-button fill="clear" size="small" color="twitter">
-          <ion-icon :icon="logoTwitter" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" size="small" color="github">
-          <ion-icon :icon="logoGithub" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" size="small" color="instagram">
-          <ion-icon :icon="logoInstagram" slot="icon-only"></ion-icon>
-        </ion-button>
+        <IonButton fill="clear" size="small" color="twitter">
+          <template #icon-only>
+            <IonIcon :icon="logoTwitter" />
+          </template>
+        </IonButton>
+        <IonButton fill="clear" size="small" color="github">
+          <template #icon-only>
+            <IonIcon :icon="logoGithub" />
+          </template>
+        </IonButton>
+        <IonButton fill="clear" size="small" color="instagram">
+          <template #icon-only>
+            <IonIcon :icon="logoInstagram" />
+          </template>
+        </IonButton>
       </div>
 
       <p>{{ speaker ? speaker.about : '' }}</p>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
 <style scoped>
@@ -39,33 +77,3 @@
   color: #60646b;
 }
 </style>
-
-<script lang="ts" setup>
-import { computed } from 'vue';
-import { Speaker } from '@/store/modules/speakers';
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonContent,
-  IonTitle,
-  IonBackButton,
-} from '@ionic/vue';
-import {
-  logoTwitter,
-  logoGithub,
-  logoInstagram
-} from "ionicons/icons";
-import { useRoute } from 'vue-router';
-import { useStore } from '@/store';
-
-const speaker = computed(() => {
-  return store.state.speakers.speakers.find((s: Speaker) => s.id === parseInt(route.params.speakerId.toString()));
-});
-
-const store = useStore();
-const route = useRoute();
-</script>

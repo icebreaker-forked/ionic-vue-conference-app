@@ -1,7 +1,7 @@
-import { Module } from 'vuex';
+import type { Module } from 'vuex'
 
 export interface DarkModeState {
-  darkMode: boolean;
+  darkMode: boolean
 }
 
 const darkModeStore: Module<DarkModeState, {}> = {
@@ -10,20 +10,20 @@ const darkModeStore: Module<DarkModeState, {}> = {
   },
   mutations: {
     setDarkMode(state, darkMode: boolean) {
-      state.darkMode = darkMode;
+      state.darkMode = darkMode
     },
   },
   actions: {
     toggleDarkMode({ commit, state }) {
-      const newDarkMode = !state.darkMode;
-      commit('setDarkMode', newDarkMode);
+      const newDarkMode = !state.darkMode
+      commit('setDarkMode', newDarkMode)
     },
   },
   getters: {
     isDarkMode(state) {
-      return state.darkMode;
+      return state.darkMode
     },
   },
-};
+}
 
-export default darkModeStore;
+export default darkModeStore

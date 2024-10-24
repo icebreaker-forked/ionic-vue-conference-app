@@ -1,55 +1,67 @@
-<template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title>Account</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content class="outer-content page-account">
-      <div>
-        <img src="http://www.gravatar.com/avatar?d=mm&s=140" alt="avatar" />
-        <h2>{{ username }}</h2>
-        <ion-list inset>
-          <ion-item @click="updatePicture">Update Picture</ion-item>
-          <ion-item @click="changeUsername">Change Username</ion-item>
-          <ion-item @click="changePassword">Change Password</ion-item>
-          <ion-item @click="support">Support</ion-item>
-          <ion-item @click="logOutUser">Logout</ion-item>
-        </ion-list>
-      </div>
-    </ion-content>
-  </ion-page>
-</template>
-
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useStore } from 'vuex';
 import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
   IonBackButton,
+  IonButtons,
   IonContent,
-  IonList,
+  IonHeader,
   IonItem,
+  IonList,
+  IonPage,
   IonTitle,
-} from '@ionic/vue';
+  IonToolbar,
+} from '@ionic/vue'
+import { ref } from 'vue'
+import { useStore } from 'vuex'
 
-const store = useStore();
+const store = useStore()
 
-const updatePicture = () => {};
-const changeUsername = () => {};
-const changePassword = () => {};
-const support = () => {};
-const logOutUser = () => {};
+function updatePicture() {}
+function changeUsername() {}
+function changePassword() {}
+function support() {}
+function logOutUser() {}
 
-const username = ref(store.state.user.username);
+const username = ref(store.state.user.username)
 </script>
+
+<template>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar color="primary">
+        <template #start>
+          <IonButtons>
+            <IonBackButton />
+          </IonButtons>
+        </template>
+        <IonTitle>Account</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent class="outer-content page-account">
+      <div>
+        <img src="http://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
+        <h2>{{ username }}</h2>
+        <IonList inset>
+          <IonItem @click="updatePicture">
+            Update Picture
+          </IonItem>
+          <IonItem @click="changeUsername">
+            Change Username
+          </IonItem>
+          <IonItem @click="changePassword">
+            Change Password
+          </IonItem>
+          <IonItem @click="support">
+            Support
+          </IonItem>
+          <IonItem @click="logOutUser">
+            Logout
+          </IonItem>
+        </IonList>
+      </div>
+    </IonContent>
+  </IonPage>
+</template>
 
 <style scoped>
 img {

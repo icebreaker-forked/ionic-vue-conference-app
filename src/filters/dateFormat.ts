@@ -1,15 +1,15 @@
-import { format as dateFnsFormat } from 'date-fns';
+import { format as dateFnsFormat } from 'date-fns'
 
 export function dateFormat(dateString: string, formatString: string): string {
   if (!dateString) {
-    return '';
+    return ''
   }
 
-  const parsedTime = new Date(dateString);
+  const parsedTime = new Date(dateString)
 
   if (isNaN(parsedTime.getTime())) {
-    return '';
+    return ''
   }
 
-  return dateFnsFormat(parsedTime, formatString);
+  return dateFnsFormat(parsedTime, formatString)
 }

@@ -1,70 +1,122 @@
-<template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Login</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<script setup lang="ts">
+import {
+  IonButton,
+  IonButtons,
+  IonCol,
+  IonContent,
+  IonHeader,
+  IonInput,
+  IonItem,
+  IonList,
+  IonMenuButton,
+  IonPage,
+  IonRow,
+  IonTitle,
+  IonToast,
+  IonToolbar,
+} from '@ionic/vue'
+import { computed, ref } from 'vue'
 
-    <ion-content class="ion-padding">
+const username = ref('')
+const password = ref('')
+const submitted = ref(false)
+
+const usernameValid = true
+const passwordValid = true
+
+const showToast = ref(false)
+const toastMessage = ref('')
+
+const canSubmit = computed(
+  () => username.value.trim() !== '' && password.value.trim() !== '',
+)
+
+function onLogin() {
+  submitted.value = true
+  if (usernameValid && passwordValid) {
+  }
+}
+
+function onSignup() {
+  toastMessage.value = 'Successfully logged in!'
+
+  showToast.value = true
+
+  username.value = ''
+  password.value = ''
+}
+</script>
+
+<template>
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <template #start>
+          <IonButtons>
+            <IonMenuButton />
+          </IonButtons>
+        </template>
+        <IonTitle>Login</IonTitle>
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent class="ion-padding">
       <div class="login-logo">
-        <img src="/assets/img/appicon.svg" alt="Ionic logo" />
+        <img src="/assets/img/appicon.svg" alt="Ionic logo">
       </div>
 
       <form novalidate @submit.prevent="onLogin">
-        <ion-list>
-          <ion-item>
-            <ion-input
+        <IonList>
+          <IonItem>
+            <IonInput
+              v-model="username"
               label="Username"
               labelPlacement="stacked"
-              v-model="username"
               name="username"
               type="text"
               :spellcheck="false"
               autocapitalize="off"
               required
-            ></ion-input>
-          </ion-item>
+            />
+          </IonItem>
 
-          <ion-item>
-            <ion-input
+          <IonItem>
+            <IonInput
+              v-model="password"
               labelPlacement="stacked"
               label="Password"
-              v-model="password"
               name="password"
               type="password"
               required
-            ></ion-input>
-          </ion-item>
-        </ion-list>
+            />
+          </IonItem>
+        </IonList>
 
-        <ion-row responsive-sm class="ion-padding">
-          <ion-col>
-            <ion-button :disabled="!canSubmit" type="submit" expand="block"
-              >Login</ion-button
-            >
-          </ion-col>
-          <ion-col>
-            <ion-button
+        <IonRow responsive-sm class="ion-padding">
+          <IonCol>
+            <IonButton :disabled="!canSubmit" type="submit" expand="block">
+              Login
+            </IonButton>
+          </IonCol>
+          <IonCol>
+            <IonButton
               :disabled="!canSubmit"
-              @click="onSignup"
               color="light"
               expand="block"
-              >Signup</ion-button
+              @click="onSignup"
             >
-          </ion-col>
-        </ion-row>
+              Signup
+            </IonButton>
+          </IonCol>
+        </IonRow>
       </form>
-      <ion-toast
+      <IonToast
         :is-open="showToast"
         :message="toastMessage"
         :duration="2000"
-      ></ion-toast>
-    </ion-content>
-  </ion-page>
+      />
+    </IonContent>
+  </IonPage>
 </template>
 
 <style scoped>
@@ -82,52 +134,3 @@
   margin-bottom: 0;
 }
 </style>
-
-<script setup lang="ts">
-import { computed, ref } from "vue";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonButton,
-  IonContent,
-  IonList,
-  IonItem,
-  IonTitle,
-  IonRow,
-  IonCol,
-  IonInput,
-  IonToast,
-} from "@ionic/vue";
-
-const username = ref("");
-const password = ref("");
-const submitted = ref(false);
-
-const usernameValid = true;
-const passwordValid = true;
-
-const showToast = ref(false);
-const toastMessage = ref("");
-
-const canSubmit = computed(
-  () => username.value.trim() !== "" && password.value.trim() !== ""
-);
-
-const onLogin = () => {
-  submitted.value = true;
-  if (usernameValid && passwordValid) {
-  }
-};
-
-const onSignup = () => {
-  toastMessage.value = "Successfully logged in!";
-
-  showToast.value = true;
-
-  username.value = "";
-  password.value = "";
-};
-</script>

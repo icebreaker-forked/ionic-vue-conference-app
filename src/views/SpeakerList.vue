@@ -1,32 +1,100 @@
-<template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Speakers</ion-title>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+<script lang="ts" setup>
+import type { Session } from '@/store/modules/sessions'
+import type { Speaker } from '@/store/modules/speakers'
+import { useStore } from '@/store'
+import {
+  IonAvatar,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenuButton,
+  IonPage,
+  IonRow,
+  IonTitle,
+  IonToolbar,
+  loadingController,
+} from '@ionic/vue'
+import { chatbubbles, logoTwitter, share } from 'ionicons/icons'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Speakers</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-list>
-        <ion-grid fixed>
-          <ion-row align-items-stretch>
-            <ion-col
-              size="12"
-              size-md="6"
+const store = useStore()
+const router = useRouter()
+const speakers = computed(() => store.state.speakers.speakers.concat().sort())
+
+function sessionsBySpeaker(speakerId: number) {
+  return store.state.sessions.sessions.filter((s: Session) =>
+    s.speakerIds.includes(speakerId),
+  )
+}
+
+function goToSessionDetail(session: Session) {
+  router.push({
+    name: 'speaker-session-detail',
+    params: { sessionId: session.id.toString() },
+  })
+}
+
+function goToSpeakerDetail(speaker: Speaker) {
+  router.push({
+    name: 'speaker-detail',
+    params: { speakerId: speaker.id.toString() },
+  })
+}
+
+async function gotToOffsite(msg: string) {
+  const loading = await loadingController.create({
+    message: msg,
+    duration: Math.random() * 1000 + 500,
+  })
+  await loading.present()
+  await loading.onWillDismiss()
+}
+</script>
+
+<template>
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonTitle>Speakers</IonTitle>
+        <template #start>
+          <IonButtons>
+            <IonMenuButton />
+          </IonButtons>
+        </template>
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent :fullscreen="true">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">
+            Speakers
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonList>
+        <IonGrid fixed>
+          <IonRow align-items-stretch>
+            <IonCol
               v-for="speaker in speakers"
               :key="speaker.id"
+              size="12"
+              size-md="6"
             >
-              <ion-card class="speaker-card">
-                <ion-card-header>
-                  <ion-item
+              <IonCard class="speaker-card">
+                <IonCardHeader>
+                  <IonItem
                     :detail="false"
                     lines="none"
                     button
@@ -42,11 +110,11 @@
                       <h2>{{ speaker.name }}</h2>
                       <p>{{ speaker.title }}</p>
                     </ion-label>
-                  </ion-item>
-                </ion-card-header>
+                  </IonItem>
+                </IonCardHeader>
 
-                <ion-card-content>
-                  <ion-list lines="none">
+                <IonCardContent>
+                  <IonList lines="none">
                     <ion-item
                       v-for="session in sessionsBySpeaker(speaker.id)"
                       button
@@ -59,11 +127,11 @@
                     <ion-item button @click="goToSpeakerDetail(speaker)">
                       <h3>About {{ speaker.name }}</h3>
                     </ion-item>
-                  </ion-list>
-                </ion-card-content>
+                  </IonList>
+                </IonCardContent>
 
-                <ion-row no-padding justify-content-center>
-                  <ion-col text-left size="4">
+                <IonRow no-padding justify-content-center>
+                  <IonCol text-left size="4">
                     <ion-button
                       fill="clear"
                       size="small"
@@ -73,8 +141,8 @@
                       <ion-icon :icon="logoTwitter" slot="start"></ion-icon
                       >Tweet
                     </ion-button>
-                  </ion-col>
-                  <ion-col text-center size="4">
+                  </IonCol>
+                  <IonCol text-center size="4">
                     <ion-button
                       fill="clear"
                       size="small"
@@ -83,8 +151,8 @@
                     >
                       <ion-icon :icon="share" slot="start"></ion-icon>Share
                     </ion-button>
-                  </ion-col>
-                  <ion-col text-right size="4">
+                  </IonCol>
+                  <IonCol text-right size="4">
                     <ion-button
                       fill="clear"
                       size="small"
@@ -94,77 +162,13 @@
                       <ion-icon :icon="chatbubbles" slot="start"></ion-icon
                       >Contact
                     </ion-button>
-                  </ion-col>
-                </ion-row>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-list>
-    </ion-content>
-  </ion-page>
+                  </IonCol>
+                </IonRow>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonList>
+    </IonContent>
+  </IonPage>
 </template>
-
-<script lang="ts" setup>
-import { computed } from "vue";
-import { Speaker } from "@/store/modules/speakers";
-import { Session } from "@/store/modules/sessions";
-import { useRouter } from "vue-router";
-import { useStore } from "@/store";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonButton,
-  IonIcon,
-  IonContent,
-  IonList,
-  IonItem,
-  IonTitle,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonLabel,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonAvatar,
-  loadingController,
-} from "@ionic/vue";
-import { share, logoTwitter, chatbubbles } from "ionicons/icons";
-
-const store = useStore();
-const router = useRouter();
-const speakers = computed(() => store.state.speakers.speakers.concat().sort());
-
-const sessionsBySpeaker = (speakerId: number) => {
-  return store.state.sessions.sessions.filter((s: Session) =>
-    s.speakerIds.includes(speakerId)
-  );
-};
-
-const goToSessionDetail = (session: Session) => {
-  router.push({
-    name: "speaker-session-detail",
-    params: { sessionId: session.id.toString() },
-  });
-};
-
-const goToSpeakerDetail = (speaker: Speaker) => {
-  router.push({
-    name: "speaker-detail",
-    params: { speakerId: speaker.id.toString() },
-  });
-};
-
-const gotToOffsite = async (msg: string) => {
-  const loading = await loadingController.create({
-    message: msg,
-    duration: Math.random() * 1000 + 500,
-  });
-  await loading.present();
-  await loading.onWillDismiss();
-};
-</script>

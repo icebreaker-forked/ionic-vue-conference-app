@@ -1,10 +1,10 @@
-import { Module } from 'vuex';
+import type { Module } from 'vuex'
 
 export interface Location {
-  id: number;
-  name?: string;
-  lat: number;
-  lng: number;
+  id: number
+  name?: string
+  lat: number
+  lng: number
 }
 
 export interface LocationState {
@@ -15,19 +15,19 @@ export interface LocationState {
 const locationStore: Module<LocationState, {}> = {
   state: {
     mapCenterId: 1,
-    locations: []
+    locations: [],
   },
   mutations: {
     updateLocations(state, locations: Location[]) {
-      state.locations = locations;
+      state.locations = locations
     },
   },
   actions: {
     async loadLocationData({ commit }) {
-      const response = await fetch('/data/locations.json');
-      const data = await response.json();
-      commit('updateLocations', data);
-    }
+      const response = await fetch('/data/locations.json')
+      const data = await response.json()
+      commit('updateLocations', data)
+    },
   },
   getters: {
     mapCenter(state) {
@@ -35,8 +35,8 @@ const locationStore: Module<LocationState, {}> = {
     },
     allLocations(state) {
       return state.locations.filter(l => l.id !== state.mapCenterId)
-    }
-  }
-};
+    },
+  },
+}
 
-export default locationStore;
+export default locationStore

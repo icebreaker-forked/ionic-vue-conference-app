@@ -1,21 +1,22 @@
-
-export const loadLocalStore = () => {
+export function loadLocalStore() {
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem('state')
     if (serializedState === null) {
-      return undefined;
+      return undefined
     }
-    return JSON.parse(serializedState);
-  } catch(e) {
-    return undefined;
+    return JSON.parse(serializedState)
+  }
+  catch {
+    return undefined
   }
 }
 
-export const saveToLocalStore = (state: any) => {
+export function saveToLocalStore(state: any) {
   try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
-  } catch(e) {
-    //ignore errors
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('state', serializedState)
+  }
+  catch {
+    // ignore errors
   }
 }
