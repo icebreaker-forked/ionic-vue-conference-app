@@ -1,19 +1,9 @@
 <script lang="ts">
-import type { Ref } from 'vue'
 import { useStore } from '@/store'
 import { Storage } from '@ionic/storage'
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/vue'
-import { defineComponent, onMounted, ref } from 'vue'
-import SysMenu from './components/Menu.vue'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    IonApp,
-    IonSplitPane,
-    IonRouterOutlet,
-    SysMenu,
-  },
   setup() {
     const dark: Ref<boolean> = ref(false)
     let globalStorage: Storage

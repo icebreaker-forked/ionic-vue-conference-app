@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
-
 const supportMessage = ref('')
 const submitted = ref(false)
 

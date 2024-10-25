@@ -1,16 +1,4 @@
 <script setup lang="ts">
-import {
-  IonBackButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonItem,
-  IonList,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/vue'
-import { ref } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()

@@ -72,29 +72,6 @@ export default defineComponent({
       people,
       map,
       informationCircle,
-      appPages: [
-        {
-          title: 'Schedule',
-          url: '/tabs/schedule',
-          name: 'tabs.schedule',
-          icon: calendar,
-        },
-        {
-          title: 'Speakers',
-          url: '/tabs/speakers',
-          icon: people,
-        },
-        {
-          title: 'Map',
-          url: '/tabs/map',
-          icon: map,
-        },
-        {
-          title: 'About',
-          url: '/tabs/about',
-          icon: informationCircle,
-        },
-      ],
     }
   },
 })
@@ -103,20 +80,6 @@ export default defineComponent({
 <template>
   <IonMenu content-id="main-content">
     <IonContent class="ion-padding">
-      <IonList lines="none">
-        <IonListHeader>
-          Navigate
-        </IonListHeader>
-        <IonMenuToggle v-for="p in appPages" :key="p.title" :auto-hide="false">
-          <IonItem button @click="navigate(p.url)">
-            <IonIcon slot="start" :icon="p.icon" />
-
-            <IonLabel>
-              {{ p.title }}
-            </IonLabel>
-          </IonItem>
-        </IonMenuToggle>
-      </IonList>
       <IonList v-if="loggedIn" lines="none">
         <IonListHeader>
           Account
@@ -187,18 +150,6 @@ export default defineComponent({
             Dark Mode
           </IonToggle>
         </IonItem>
-      </IonList>
-      <IonList lines="none">
-        <IonListHeader>
-          Tutorial
-        </IonListHeader>
-        <IonMenuToggle :auto-hide="false">
-          <IonItem button @click="openTutorial()">
-            <IonIcon slot="start" :icon="ionIcons.hammer" />
-
-            <IonLabel>Show Tutorial</IonLabel>
-          </IonItem>
-        </IonMenuToggle>
       </IonList>
     </IonContent>
   </IonMenu>

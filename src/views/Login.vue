@@ -1,22 +1,4 @@
 <script setup lang="ts">
-import {
-  IonButton,
-  IonButtons,
-  IonCol,
-  IonContent,
-  IonHeader,
-  IonInput,
-  IonItem,
-  IonList,
-  IonMenuButton,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToast,
-  IonToolbar,
-} from '@ionic/vue'
-import { computed, ref } from 'vue'
-
 const username = ref('')
 const password = ref('')
 const submitted = ref(false)
@@ -34,6 +16,7 @@ const canSubmit = computed(
 function onLogin() {
   submitted.value = true
   if (usernameValid && passwordValid) {
+    console.info('--')
   }
 }
 

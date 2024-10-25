@@ -1,20 +1,4 @@
 <script lang="ts" setup>
-import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonInput,
-  IonItem,
-  IonList,
-  IonMenuButton,
-  IonPage,
-  IonTitle,
-  IonToast,
-  IonToolbar,
-} from '@ionic/vue'
-import { computed, ref } from 'vue'
-
 const username = ref('')
 const password = ref('')
 const submitted = ref(false)
