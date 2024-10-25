@@ -38,13 +38,15 @@ function onSignup() {
           <IonMenuButton />
         </IonButtons>
 
-        <IonTitle>Login</IonTitle>
+        <IonTitle class="dark:text-pink-500">
+          Login
+        </IonTitle>
       </IonToolbar>
     </IonHeader>
 
     <IonContent class="ion-padding">
-      <div class="login-logo">
-        <img src="/assets/img/appicon.svg" alt="Ionic logo">
+      <div class="flex justify-center">
+        <img class="w-40" src="/assets/img/appicon.svg" alt="Ionic logo">
       </div>
 
       <form novalidate @submit.prevent="onLogin">
@@ -100,19 +102,3 @@ function onSignup() {
     </IonContent>
   </IonPage>
 </template>
-
-<style scoped>
-.login-logo {
-  padding: 20px 0;
-  min-height: 200px;
-  text-align: center;
-}
-
-.login-logo img {
-  max-width: 150px;
-}
-
-.list {
-  margin-bottom: 0;
-}
-</style>

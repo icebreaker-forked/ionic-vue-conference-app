@@ -19,4 +19,4 @@ function handleDarkModeChanged(newDarkValue: boolean) {
   </IonApp>
 </template>
 
-<style src='./theme/variables.scss'></style>
+<style src='./theme/index.scss'></style>

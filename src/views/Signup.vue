@@ -41,8 +41,8 @@ function onSignup() {
     </IonHeader>
 
     <IonContent class="ion-padding">
-      <div class="signup-logo">
-        <img src="/assets/img/appicon.svg" alt="Ionic Logo">
+      <div class="flex justify-center">
+        <img class="w-32" src="/assets/img/appicon.svg" alt="Ionic Logo">
       </div>
       <form @submit.prevent="onSignup">
         <IonList>
@@ -81,17 +81,3 @@ function onSignup() {
     </IonContent>
   </IonPage>
 </template>
-
-<style scoped>
-.signup-logo {
-  min-height: 200px;
-
-  padding: 20px 0;
-
-  text-align: center;
-}
-
-.signup-logo img {
-  max-width: 150px;
-}
-</style>

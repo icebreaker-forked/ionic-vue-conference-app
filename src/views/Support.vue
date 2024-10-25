@@ -37,9 +37,6 @@ onMounted(() => {
     </IonHeader>
 
     <IonContent class="ion-padding">
-      <div class="support-logo">
-        <img src="/assets/img/appicon.svg" alt="Ionic Logo">
-      </div>
       <form novalidate @submit="submitForm">
         <IonTextarea
           v-model="supportMessage"
@@ -65,17 +62,3 @@ onMounted(() => {
     </IonContent>
   </IonPage>
 </template>
-
-<style scoped>
-.support-logo {
-  min-height: 200px;
-
-  padding: 20px 0;
-
-  text-align: center;
-}
-
-.support-logo img {
-  max-width: 150px;
-}
-</style>
