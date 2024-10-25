@@ -2,8 +2,6 @@ import { IonicVue } from '@ionic/vue'
 import App from './App.vue'
 import router from './router'
 
-import store from './store'
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css'
 
@@ -40,11 +38,11 @@ import { register } from 'swiper/element/bundle'
 import '@ionic/vue/css/palettes/dark.class.css'
 
 register()
-
+const pinia = createPinia()
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
-  .use(store)
+  .use(pinia)
 
 router.isReady().then(() => {
   app.mount('#app')

@@ -1,9 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
-import store from './store'
+import { useUserStore } from './store'
 
 const privateRoute: RouteRecordRaw['beforeEnter'] = function (_to, _from, next) {
-  if (!store.state.user.isAuthenticated) {
+  const userStore = useUserStore()
+  if (!userStore.isAuthenticated) {
     next({ name: 'login' })
   }
   else {

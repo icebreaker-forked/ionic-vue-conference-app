@@ -1,6 +1,6 @@
 <script lang="ts">
 import router from '@/router'
-import { useStore } from '@/store'
+import { useSystemStore } from '@/store'
 
 import { Storage } from '@ionic/storage'
 import * as ionIcons from 'ionicons/icons'
@@ -20,7 +20,7 @@ export default defineComponent({
   emits: ['dark-mode-changed'],
   setup() {
     const instance = getCurrentInstance()
-    const store = useStore()
+    const store = useSystemStore()
     const localDark = ref(false)
     const loggedIn = ref(false)
     const storage = new Storage()
@@ -31,7 +31,7 @@ export default defineComponent({
       updateDarkMode(newVal)
     })
 
-    const isDarkMode = computed(() => store.getters.isDarkMode)
+    const isDarkMode = computed(() => store.isDarkMode)
 
     const setLocalDarkMode = (newDarkValue: boolean) => {
       localDark.value = newDarkValue

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useStore } from 'vuex'
+import { useUserStore } from '@/store'
 
-const store = useStore()
+const store = useUserStore()
 
 function updatePicture() {}
 function changeUsername() {}
@@ -9,7 +9,7 @@ function changePassword() {}
 function support() {}
 function logOutUser() {}
 
-const username = ref(store.state.user.username)
+const username = ref(store.username)
 </script>
 
 <template>
