@@ -1,16 +1,4 @@
 <script lang="ts" setup>
-import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonMenuButton,
-  IonPage,
-  IonTextarea,
-  IonTitle,
-  IonToast,
-  IonToolbar,
-} from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 
 const supportMessage = ref('')

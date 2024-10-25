@@ -3,17 +3,6 @@ import router from '@/router'
 import { useStore } from '@/store'
 
 import { Storage } from '@ionic/storage'
-import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonToggle,
-} from '@ionic/vue'
 import * as ionIcons from 'ionicons/icons'
 import {
   calendar,
@@ -25,17 +14,6 @@ import { computed, defineComponent, getCurrentInstance, onMounted, ref, watch } 
 
 export default defineComponent({
   name: 'SysMenu',
-  components: {
-    IonContent,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonListHeader,
-    IonMenu,
-    IonMenuToggle,
-    IonToggle,
-  },
   props: {
     darkMode: Boolean,
   },
