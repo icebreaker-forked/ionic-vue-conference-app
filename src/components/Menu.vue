@@ -131,9 +131,8 @@ export default defineComponent({
         </IonListHeader>
         <IonMenuToggle v-for="p in appPages" :key="p.title" :auto-hide="false">
           <IonItem button @click="navigate(p.url)">
-            <template #start>
-              <IonIcon :icon="p.icon" />
-            </template>
+            <IonIcon slot="start" :icon="p.icon" />
+
             <IonLabel>
               {{ p.title }}
             </IonLabel>
@@ -146,9 +145,8 @@ export default defineComponent({
         </IonListHeader>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="navigate('/account')">
-            <template #start>
-              <IonIcon :icon="ionIcons.person" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.person" />
+
             <IonLabel>
               Account
             </IonLabel>
@@ -156,9 +154,8 @@ export default defineComponent({
         </IonMenuToggle>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="navigate('/support')">
-            <template #start>
-              <IonIcon :icon="ionIcons.help" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.help" />
+
             <IonLabel>
               Support
             </IonLabel>
@@ -166,9 +163,8 @@ export default defineComponent({
         </IonMenuToggle>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="logout()">
-            <template #start>
-              <IonIcon :icon="ionIcons.logOut" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.logOut" />
+
             <IonLabel>
               Logout
             </IonLabel>
@@ -181,9 +177,8 @@ export default defineComponent({
         </IonListHeader>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="navigate('/login')">
-            <template #start>
-              <IonIcon :icon="ionIcons.logIn" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.logIn" />
+
             <IonLabel>
               Login
             </IonLabel>
@@ -191,9 +186,8 @@ export default defineComponent({
         </IonMenuToggle>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="navigate('/support')">
-            <template #start>
-              <IonIcon :icon="ionIcons.help" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.help" />
+
             <IonLabel>
               Support
             </IonLabel>
@@ -201,18 +195,16 @@ export default defineComponent({
         </IonMenuToggle>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="navigate('/signup')">
-            <template #start>
-              <IonIcon :icon="ionIcons.personAdd" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.personAdd" />
+
             <IonLabel>
               Signup
             </IonLabel>
           </IonItem>
         </IonMenuToggle>
         <IonItem>
-          <template #start>
-            <IonIcon :icon="ionIcons.moonOutline" />
-          </template>
+          <IonIcon slot="start" :icon="ionIcons.moonOutline" />
+
           <IonToggle v-model="localDark" label-placement="start">
             Dark Mode
           </IonToggle>
@@ -224,9 +216,8 @@ export default defineComponent({
         </IonListHeader>
         <IonMenuToggle :auto-hide="false">
           <IonItem button @click="openTutorial()">
-            <template #start>
-              <IonIcon :icon="ionIcons.hammer" />
-            </template>
+            <IonIcon slot="start" :icon="ionIcons.hammer" />
+
             <IonLabel>Show Tutorial</IonLabel>
           </IonItem>
         </IonMenuToggle>

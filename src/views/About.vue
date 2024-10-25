@@ -64,18 +64,15 @@ watch(location, (newLocation: string, oldLocation: string) => {
     <IonContent>
       <IonHeader class="ion-no-border">
         <IonToolbar>
-          <template #start>
-            <IonButtons>
-              <IonMenuButton />
-            </IonButtons>
-          </template>
-          <template #end>
-            <IonButtons>
-              <IonButton id="popover-button">
-                <IonIcon slot="icon-only" :icon="ellipsisHorizontal" />
-              </IonButton>
-            </IonButtons>
-          </template>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+
+          <IonButtons slot="end">
+            <IonButton id="popover-button">
+              <IonIcon slot="icon-only" :icon="ellipsisHorizontal" />
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 
@@ -123,9 +120,11 @@ watch(location, (newLocation: string, oldLocation: string) => {
             <IonLabel>
               Date
             </IonLabel>
-            <template #end>
-              <IonText>{{ dateFormat(conferenceDate, "MMM dd, yyyy") }}</IonText>
-            </template>
+
+            <IonText slot="end">
+              {{ dateFormat(conferenceDate, "MMM dd, yyyy") }}
+            </IonText>
+
             <IonPopover id="date-input-popover" trigger="open-date-input" :showBackdrop="false" side="top" alignment="end">
               <IonDatetime v-model="conferenceDate" max="2056" presentation="date" />
             </IonPopover>

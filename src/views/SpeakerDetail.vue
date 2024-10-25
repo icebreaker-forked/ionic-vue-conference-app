@@ -32,11 +32,10 @@ const route = useRoute()
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonBackButton text="Speakers" />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonBackButton text="Speakers" />
+        </IonButtons>
+
         <IonTitle>{{ speaker ? speaker.name : '' }}</IonTitle>
       </IonToolbar>
     </IonHeader>
@@ -46,19 +45,13 @@ const route = useRoute()
         <img :src="speaker.profilePic" :alt="speaker.name">
         <br>
         <IonButton fill="clear" size="small" color="twitter">
-          <template #icon-only>
-            <IonIcon :icon="logoTwitter" />
-          </template>
+          <IonIcon slot="icon-only" :icon="logoTwitter" />
         </IonButton>
         <IonButton fill="clear" size="small" color="github">
-          <template #icon-only>
-            <IonIcon :icon="logoGithub" />
-          </template>
+          <IonIcon slot="icon-only" :icon="logoGithub" />
         </IonButton>
         <IonButton fill="clear" size="small" color="instagram">
-          <template #icon-only>
-            <IonIcon :icon="logoInstagram" />
-          </template>
+          <IonIcon slot="icon-only" :icon="logoInstagram" />
         </IonButton>
       </div>
 

@@ -57,13 +57,11 @@ onMounted(async () => {
   <IonPage v-show="ionDidTutorial">
     <IonHeader>
       <IonToolbar color="translucent">
-        <template #end>
-          <IonButtons>
-            <IonButton color="primary" @click="navigateToSchedule">
-              Skip
-            </IonButton>
-          </IonButtons>
-        </template>
+        <IonButtons slot="end">
+          <IonButton color="primary" @click="navigateToSchedule">
+            Skip
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding">
@@ -110,9 +108,8 @@ onMounted(async () => {
 
           <IonButton fill="clear" @click="navigateToSchedule">
             Continue
-            <template #end>
-              <IonIcon :icon="arrowForward" />
-            </template>
+
+            <IonIcon slot="end" :icon="arrowForward" />
           </IonButton>
         </SwiperSlide>
       </Swiper>

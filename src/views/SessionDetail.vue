@@ -84,11 +84,10 @@ export default {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonBackButton default-href="/" />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonBackButton default-href="/" />
+        </IonButtons>
+
         <IonTitle>{{ session ? session.name : '' }}</IonTitle>
       </IonToolbar>
     </IonHeader>
@@ -140,9 +139,8 @@ export default {
           <IonLabel color="primary">
             Download Video
           </IonLabel>
-          <template #end>
-            <IonIcon color="primary" size="small" :icon="cloudDownload" />
-          </template>
+
+          <IonIcon slot="end" color="primary" size="small" :icon="cloudDownload" />
         </IonItem>
         <IonItem button @click="sessionClick('Left Feedback')">
           <IonLabel color="primary">

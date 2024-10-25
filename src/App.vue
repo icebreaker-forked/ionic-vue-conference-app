@@ -4,7 +4,7 @@ import { useStore } from '@/store'
 import { Storage } from '@ionic/storage'
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/vue'
 import { defineComponent, onMounted, ref } from 'vue'
-import Menu from './components/Menu.vue'
+import SysMenu from './components/Menu.vue'
 
 export default defineComponent({
   name: 'App',
@@ -12,11 +12,11 @@ export default defineComponent({
     IonApp,
     IonSplitPane,
     IonRouterOutlet,
-    Menu,
+    SysMenu,
   },
   setup() {
     const dark: Ref<boolean> = ref(false)
-    let globalStorage
+    let globalStorage: Storage
     async function initializeStorage() {
       const storage = new Storage()
       await storage.create()
@@ -47,7 +47,7 @@ export default defineComponent({
 <template>
   <IonApp>
     <IonSplitPane content-id="main-content">
-      <Menu :dark="dark" @dark-mode-changed="handleDarkModeChanged" />
+      <SysMenu :dark="dark" @dark-mode-changed="handleDarkModeChanged" />
       <IonRouterOutlet id="main-content" />
     </IonSplitPane>
   </IonApp>

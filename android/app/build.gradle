@@ -1,7 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "io.ionic.starter"
+    signingConfigs {
+      release {
+        storeFile file('C:\\Users\\YANGQIMING\\Desktop\\ionic-sign.jks')
+        storePassword '123456'
+        keyAlias 'key0'
+        keyPassword '654321'
+      }
+    }
+  namespace "io.ionic.starter"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "io.ionic.starter"
@@ -20,6 +28,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+          signingConfig signingConfigs.release
         }
     }
 }

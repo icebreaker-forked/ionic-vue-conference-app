@@ -74,23 +74,21 @@ function selectAll(check: boolean) {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonButton @click="dismiss">
-              Cancel
-            </IonButton>
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonButton @click="dismiss">
+            Cancel
+          </IonButton>
+        </IonButtons>
+
         <IonTitle>
           Filter Sessions
         </IonTitle>
-        <template #end>
-          <IonButtons>
-            <IonButton strong @click="applyFilters">
-              Done
-            </IonButton>
-          </IonButtons>
-        </template>
+
+        <IonButtons slot="end">
+          <IonButton strong @click="applyFilters">
+            Done
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
 
@@ -98,9 +96,8 @@ function selectAll(check: boolean) {
       <IonList>
         <IonListHeader>Tracks</IonListHeader>
         <IonItem v-for="track in tracks" :key="track.name">
-          <template #start>
-            <IonIcon :icon="track.icon" color="primary" />
-          </template>
+          <IonIcon slot="start" :icon="track.icon" color="primary" />
+
           <IonToggle :checked="track.isChecked" color="success" @ionChange="track.isChecked = !track.isChecked">
             {{ track.name }}
           </IonToggle>
@@ -109,20 +106,17 @@ function selectAll(check: boolean) {
     </IonContent>
     <IonFooter :translucent="true">
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonButton @click="selectAll(false)">
-              Deselect All
-            </IonButton>
-          </IonButtons>
-        </template>
-        <template #end>
-          <IonButtons>
-            <IonButton @click="selectAll(true)">
-              Select All
-            </IonButton>
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonButton @click="selectAll(false)">
+            Deselect All
+          </IonButton>
+        </IonButtons>
+
+        <IonButtons slot="end">
+          <IonButton @click="selectAll(true)">
+            Select All
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonFooter>
   </IonPage>

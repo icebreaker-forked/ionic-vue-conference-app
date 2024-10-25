@@ -51,11 +51,10 @@ function onSignup() {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonMenuButton />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonMenuButton />
+        </IonButtons>
+
         <IonTitle>Login</IonTitle>
       </IonToolbar>
     </IonHeader>

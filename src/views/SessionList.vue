@@ -272,11 +272,9 @@ onMounted(() => {
   <IonPage>
     <IonHeader :translucent="true">
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonMenuButton />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonMenuButton />
+        </IonButtons>
 
         <IonSegment :value="segment" @ionChange="updateSegment">
           <IonSegmentButton value="all">
@@ -287,15 +285,11 @@ onMounted(() => {
           </IonSegmentButton>
         </IonSegment>
 
-        <template #end>
-          <IonButtons>
-            <IonButton @click="presentFilter">
-              <template v-slot:icon-only>
-<IonIcon  :icon="options" />
-</template>
-            </IonButton>
-          </IonButtons>
-        </template>
+        <IonButtons slot="end">
+          <IonButton @click="presentFilter">
+            <IonIcon slot="icon-only" :icon="options" />
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
@@ -358,27 +352,26 @@ onMounted(() => {
       <IonListHeader v-show="allGroupedComputed?.length === 0">
         No Sessions Found
       </IonListHeader>
-      <template #fixed>
-        <IonFab ref="fab" vertical="bottom" horizontal="end">
-          <IonFabButton ref="fabButton">
-            <IonIcon :icon="shareSocial" />
+
+      <IonFab slot="fixed" ref="fab" vertical="bottom" horizontal="end">
+        <IonFabButton ref="fabButton">
+          <IonIcon :icon="shareSocial" />
+        </IonFabButton>
+        <IonFabList ref="fabList" side="top">
+          <IonFabButton color="vimeo" @click="openSocial('Vimeo')">
+            <IonIcon :icon="logoVenmo" />
           </IonFabButton>
-          <IonFabList ref="fabList" side="top">
-            <IonFabButton color="vimeo" @click="openSocial('Vimeo')">
-              <IonIcon :icon="logoVenmo" />
-            </IonFabButton>
-            <IonFabButton color="google" @click="openSocial('Google+')">
-              <IonIcon :icon="logoGoogle" />
-            </IonFabButton>
-            <IonFabButton color="twitter" @click="openSocial('Twitter')">
-              <IonIcon :icon="logoTwitter" />
-            </IonFabButton>
-            <IonFabButton color="facebook" @click="openSocial('Facebook')">
-              <IonIcon :icon="logoFacebook" />
-            </IonFabButton>
-          </IonFabList>
-        </IonFab>
-      </template>
+          <IonFabButton color="google" @click="openSocial('Google+')">
+            <IonIcon :icon="logoGoogle" />
+          </IonFabButton>
+          <IonFabButton color="twitter" @click="openSocial('Twitter')">
+            <IonIcon :icon="logoTwitter" />
+          </IonFabButton>
+          <IonFabButton color="facebook" @click="openSocial('Facebook')">
+            <IonIcon :icon="logoFacebook" />
+          </IonFabButton>
+        </IonFabList>
+      </IonFab>
     </IonContent>
   </IonPage>
 </template>

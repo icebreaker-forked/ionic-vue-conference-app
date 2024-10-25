@@ -28,11 +28,10 @@ const username = ref(store.state.user.username)
   <IonPage>
     <IonHeader>
       <IonToolbar color="primary">
-        <template #start>
-          <IonButtons>
-            <IonBackButton />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonBackButton />
+        </IonButtons>
+
         <IonTitle>Account</IonTitle>
       </IonToolbar>
     </IonHeader>

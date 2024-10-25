@@ -67,11 +67,10 @@ async function gotToOffsite(msg: string) {
     <IonHeader :translucent="true">
       <IonToolbar>
         <IonTitle>Speakers</IonTitle>
-        <template #start>
-          <IonButtons>
-            <IonMenuButton />
-          </IonButtons>
-        </template>
+
+        <IonButtons slot="start">
+          <IonMenuButton />
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
 
@@ -100,68 +99,66 @@ async function gotToOffsite(msg: string) {
                     button
                     @click="goToSpeakerDetail(speaker)"
                   >
-                    <ion-avatar slot="start">
+                    <IonAvatar slot="start">
                       <img
                         :src="speaker.profilePic"
                         alt="Speaker profile pic"
-                      />
-                    </ion-avatar>
-                    <ion-label>
+                      >
+                    </IonAvatar>
+                    <IonLabel>
                       <h2>{{ speaker.name }}</h2>
                       <p>{{ speaker.title }}</p>
-                    </ion-label>
+                    </IonLabel>
                   </IonItem>
                 </IonCardHeader>
 
                 <IonCardContent>
                   <IonList lines="none">
-                    <ion-item
+                    <IonItem
                       v-for="session in sessionsBySpeaker(speaker.id)"
+                      :key="session.id"
                       button
                       @click="goToSessionDetail(session)"
-                      :key="session.id"
                     >
                       <h3>{{ session.name }}</h3>
-                    </ion-item>
+                    </IonItem>
 
-                    <ion-item button @click="goToSpeakerDetail(speaker)">
+                    <IonItem button @click="goToSpeakerDetail(speaker)">
                       <h3>About {{ speaker.name }}</h3>
-                    </ion-item>
+                    </IonItem>
                   </IonList>
                 </IonCardContent>
 
                 <IonRow no-padding justify-content-center>
                   <IonCol text-left size="4">
-                    <ion-button
+                    <IonButton
                       fill="clear"
                       size="small"
                       color="primary"
                       @click="gotToOffsite('Tweet')"
                     >
-                      <ion-icon :icon="logoTwitter" slot="start"></ion-icon
-                      >Tweet
-                    </ion-button>
+                      <IonIcon slot="start" :icon="logoTwitter" />Tweet
+                    </IonButton>
                   </IonCol>
                   <IonCol text-center size="4">
-                    <ion-button
+                    <IonButton
                       fill="clear"
                       size="small"
                       color="primary"
                       @click="gotToOffsite('Share')"
                     >
-                      <ion-icon :icon="share" slot="start"></ion-icon>Share
-                    </ion-button>
+                      <IonIcon slot="start" :icon="share" />Share
+                    </IonButton>
                   </IonCol>
                   <IonCol text-right size="4">
-                    <ion-button
+                    <IonButton
                       fill="clear"
                       size="small"
                       color="primary"
                       @click="gotToOffsite('Contact')"
                     >
-                      <ion-icon :icon="chatbubbles" slot="start"></ion-icon
-                      >Contact
-                    </ion-button>
+                      <IonIcon slot="start" :icon="chatbubbles" />Contact
+                    </IonButton>
                   </IonCol>
                 </IonRow>
               </IonCard>

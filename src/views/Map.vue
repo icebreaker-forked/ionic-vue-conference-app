@@ -129,11 +129,10 @@ export default {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <template #start>
-          <IonButtons>
-            <IonMenuButton />
-          </IonButtons>
-        </template>
+        <IonButtons slot="start">
+          <IonMenuButton />
+        </IonButtons>
+
         <IonTitle>Map</IonTitle>
       </IonToolbar>
     </IonHeader>

@@ -41,29 +41,27 @@ export default {
     <IonTabs>
       <IonRouterOutlet />
 
-      <template #bottom>
-        <IonTabBar>
-          <IonTabButton tab="schedule" href="/tabs/schedule">
-            <IonIcon :icon="calendar" />
-            <IonLabel>Schedule</IonLabel>
-          </IonTabButton>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="schedule" href="/tabs/schedule">
+          <IonIcon :icon="calendar" />
+          <IonLabel>Schedule</IonLabel>
+        </IonTabButton>
 
-          <IonTabButton tab="speakers" href="/tabs/speakers">
-            <IonIcon :icon="people" />
-            <IonLabel>Speakers</IonLabel>
-          </IonTabButton>
+        <IonTabButton tab="speakers" href="/tabs/speakers">
+          <IonIcon :icon="people" />
+          <IonLabel>Speakers</IonLabel>
+        </IonTabButton>
 
-          <IonTabButton tab="map" href="/tabs/map">
-            <IonIcon :icon="location" />
-            <IonLabel>Map</IonLabel>
-          </IonTabButton>
+        <IonTabButton tab="map" href="/tabs/map">
+          <IonIcon :icon="location" />
+          <IonLabel>Map</IonLabel>
+        </IonTabButton>
 
-          <IonTabButton tab="about" href="/tabs/about">
-            <IonIcon :icon="informationCircle" />
-            <IonLabel>About</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </template>
+        <IonTabButton tab="about" href="/tabs/about">
+          <IonIcon :icon="informationCircle" />
+          <IonLabel>About</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
     </IonTabs>
   </IonPage>
 </template>
