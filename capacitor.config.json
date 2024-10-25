@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "heelo",
+  "appId": "ionic.app.vue",
+  "appName": "ionic-app-vue",
   "bundledWebRuntime": false,
   "webDir": "dist"
 }

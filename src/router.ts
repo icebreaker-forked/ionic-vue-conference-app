@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from '@ionic/vue-router'
 import store from './store'
 
-const privateRoute: RouteRecordRaw['beforeEnter'] = function (to, from, next) {
+const privateRoute: RouteRecordRaw['beforeEnter'] = function (_to, _from, next) {
   if (!store.state.user.isAuthenticated) {
     next({ name: 'login' })
   }
@@ -89,7 +89,6 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  // @ts-ignore
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
