@@ -42,11 +42,10 @@ onMounted(() => {
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-        
+        <IonButtons slot="start">
+          <IonMenuButton />
+        </IonButtons>
+
         <IonTitle>Support</IonTitle>
       </IonToolbar>
     </IonHeader>

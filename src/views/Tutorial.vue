@@ -74,7 +74,8 @@ onMounted(async () => {
           </h2>
           <p>
             The
-            <b>ionic conference app</b> is a practical preview of the ionic framework in action, and a demonstration of proper code use.
+            <b>ionic conference app</b> is a practical preview of the ionic framework in action, and a demonstration of
+            proper code use.
           </p>
         </SwiperSlide>
 
@@ -84,7 +85,8 @@ onMounted(async () => {
             What is Ionic?
           </h2>
           <p>
-            <b>Ionic Framework</b> is an open source SDK that enables developers to build high-quality mobile apps with web technologies
+            <b>Ionic Framework</b> is an open source SDK that enables developers to build high-quality mobile apps with
+            web technologies
             like HTML, CSS, and JavaScript.
           </p>
         </SwiperSlide>
@@ -95,7 +97,8 @@ onMounted(async () => {
             What is Ionic Pro?
           </h2>
           <p>
-            <b>Ionic Pro</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new
+            <b>Ionic Pro</b> is a powerful set of services and features built on top of Ionic Framework that brings a
+            totally new
             level of app development agility to mobile dev teams.
           </p>
         </SwiperSlide>
@@ -118,7 +121,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-  ion-header {
+ion-header {
   background-color: var(--ion-background-color, #fff);
 }
 
