@@ -19,8 +19,8 @@ import '@ionic/vue/css/flex-utils.css'
 import '@ionic/vue/css/display.css'
 
 /* Theme variables */
-import './theme/variables.css'
-import './theme/custom.css'
+import './theme/variables.scss'
+import './theme/custom.scss'
 import '@ionic/core/css/core.css'
 import '@ionic/core/css/ionic.bundle.css'
 
