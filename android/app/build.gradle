@@ -1,18 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-      release {
-        storeFile file('C:\\Users\\YANGQIMING\\Desktop\\ionic-sign.jks')
-        storePassword '123456'
-        keyAlias 'key0'
-        keyPassword '654321'
-      }
-    }
-  namespace "io.ionic.starter"
+    namespace "ionic.app.vue"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.ionic.starter"
+        applicationId "ionic.app.vue"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -28,7 +20,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-          signingConfig signingConfigs.release
         }
     }
 }

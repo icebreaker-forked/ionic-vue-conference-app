@@ -16,6 +16,9 @@
       ]
     },
     "resolveJsonModule": true,
+    "types": [
+      "vitest/globals"
+    ],
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -31,6 +34,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "cypress"
   ]
 }
